@@ -30,7 +30,7 @@ var _ = Describe("E2E TEST:"+checks.CheckCITests, func() {
 	Context("E2E TEST:Validating use of CI tests", func() {
 		It("Should return use of CI tests", func() {
 			dl := scut.TestDetailLogger{}
-			repo, err := githubrepo.MakeGithubRepo("apache/airflow")
+			repo, err := githubrepo.MakeGithubRepo("ossf-tests/airflow")
 			Expect(err).Should(BeNil())
 			repoClient := githubrepo.CreateGithubRepoClient(context.Background(), logger)
 			err = repoClient.InitRepo(repo)

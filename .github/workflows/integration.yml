@@ -13,12 +13,9 @@
 # limitations under the License.
 
 # Run secret-dependent integration tests only after /ok-to-test approval
-on:
-  pull_request:
-  repository_dispatch:
-    types: [ok-to-test-command]
-
 name: Integration tests
+on: [push, pull_request]
+
 env:
   IMAGE_NAME: scorecard
   OUTPUT_PATH: output
@@ -87,8 +84,8 @@ jobs:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
         run: |
               echo "Skipping ci-e2e. Will be re-enabled soon."
-              #go env -w GOFLAGS=-mod=mod
-              #make ci-e2e
+              go env -w GOFLAGS=-mod=mod
+              make ci-e2e
 
       - name: Build docker image
         run: make dockerbuild
